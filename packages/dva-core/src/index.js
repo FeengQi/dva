@@ -30,6 +30,7 @@ const dvaModel = {
  * @param hooksAndOpts
  * @param createOpts
  */
+// 使用create函数执行创建app对象
 export function create(hooksAndOpts = {}, createOpts = {}) {
   const { initialReducer, setupApp = noop } = createOpts;
 
@@ -241,7 +242,9 @@ export function create(hooksAndOpts = {}, createOpts = {}) {
     function createReducer() {
       return reducerEnhancer(
         combineReducers({
+          // 初始reducers
           ...reducers,
+          // 插件提供的reducer
           ...extraReducers,
           ...(app._store ? app._store.asyncReducers : {}),
         }),
